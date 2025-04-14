@@ -32,7 +32,7 @@ class CheckoutController extends Controller
     public $customer , $order , $orderDetail ,$sslCommerze;
     public function newOrder(Request $request)
     {
-        if ($request->payment_method =='Cash')
+        if ($request->payment_method =='cash')
         {
             $this->order = new Order();
             $this->order->customer_id       = Session::get('customerId');

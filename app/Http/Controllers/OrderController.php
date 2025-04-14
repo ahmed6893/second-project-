@@ -23,24 +23,23 @@ class OrderController extends Controller
     public function update(Request $request,$id)
     {
         $this->order = Order::find($id);
-        if ($request->order_status == 'Pending' || $request->order_status == 'Cancel')
+        if ($request->order_status == 'pending' || $request->order_status == 'cancel')
         {
-            $this->order->order_status = $request->order_status;
-            $this->order->delivery_status = $request->order_status;
-            $this->order->payment_status = $request->order_status;
+            $this->order->order_status      = $request->order_status;
+            $this->order->delivery_status   = $request->order_status;
+            $this->order->payment_status    = $request->order_status;
         }
-        elseif ($request->order_status == 'Processing')
+        elseif ($request->order_status == 'processing')
         {
-            $this->order->order_status = $request->order_status;
-            $this->order->delivery_status = $request->order_status;
+            $this->order->order_status =     $request->order_status;
+            $this->order->delivery_status =  $request->order_status;
             $this->order->delivery_address = $request->delivery_address;
-            $this->order->payment_status = $request->order_status;
-            $this->order->courier_id = $request->courier_id;
+            $this->order->payment_status =   $request->order_status;
+            $this->order->courier_id =       $request->courier_id;
         }
 
-        elseif ($request->order_status == 'Complete')
+        elseif ($request->order_status == 'complete')
         {
-
             $this->order->order_status       = $request->order_status;
             $this->order->delivery_status    = $request->order_status;
             $this->order->delivery_date      = date('Y-m-d');
@@ -55,11 +54,11 @@ class OrderController extends Controller
 
     public function edit($id)
     {
-        if (Order::find($id)->order_status == 'Complete')
+        if (Order::find($id)->order_status == 'complete')
         {
             return back()->with('message','Sorry It Cannot Be Edited');
         }
-        return view('admin.order.edit',['order' => Order::find($id),'couriers'=> Courier::all($id)]);
+        return view('admin.order.edit',['order' => Order::find($id),'couriers'=> Courier::all()]);
     }
 
     public function invoice($id)

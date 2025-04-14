@@ -51,8 +51,8 @@
                                         <div class="col-sm-10">
 
                                             <select class="form-control" name="courier_id">
-                                                @foreach($couriers as $courier)
                                                 <option value="">-- Select Courier --</option>
+                                                @foreach($couriers as $courier)
                                                 <option value="{{$courier->id}}" @selected($order->courier_id == $courier->id)>{{$courier->name}}</option>
                                                 @endforeach
                                             </select>
